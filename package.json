@@ -1,7 +1,15 @@
 {
   "name": "ksef",
   "version": "1.0.0",
+  "description": "Trial application for KSEF using Electron",
   "main": "main.js",
+  "author": "ben",
+  "license": "MIT",
+  "keywords": ["electron", "ksef", "trial", "desktop-app"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ksef.git"
+  },
   "scripts": {
     "start": "electron-forge start",
     "make": "electron-forge make",
