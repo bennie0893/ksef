@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Science Fair</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="fetchAllData()">
+    <div class="header">MURANG'A COUNTY KIGUMO SUBCOUNTY</div>
+    <nav class="navbar">
+      <button id="toggleButton" onclick="toggleSidebar()">☰</button>
+      <div class="logo">BEN CODE</div>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+    <nav id="sidebar" class="sidebar" style="display: none">
+      <ul>
+        <hr />
+        <li><a href="school.html">SCHOOLS</a></li>
+        <hr />
+        <li><a href="registration.html">REGISTRATION</a></li>
+        <hr />
+        <li>
+          <a href="marks.html">MARKS <i class="fas fa-caret-right"></i></a>
+          <div class="dropdown_menu">
+            <ul>
+              <li><a href="subcounty.html">SUB COUNTY</a></li>
+              <hr />
+              <li><a href="marks.html">COUNTY</a></li>
+              <hr />
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li>
+          <a
+            href="javascript:void(0)"
+            class="active"
+            onclick="showSection('ranking-sec')"
+            >ANALYSIS</a
+          >
+          <div class="dropdown_menu">
+            <ul>
+              <li>
+                <a href="javascript:void(0)" data-section="ranking-sec"
+                  >SCHOOL OVERALL</a
+                >
+              </li>
+              <hr />
+              <li>
+                <a href="javascript:void(0)" onclick="showSection('top3-sec')"
+                  >TOP THREE</a
+                >
+              </li>
+              <hr />
+              <li>
+                <a href="javascript:void(0)" onclick="showSection('top4-sec')"
+                  >TOP FOUR</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li>
+          <a href="javascript:void(0);" onclick="showSection('printouts')"
+            >PRINTOUTS</a
+          >
+        </li>
+
+        <hr />
+      </ul>
+    </nav>
+
+    <section id="ranking-sec" class="content-sec hidden">
+      <h1>School Rankings by Project Points</h1>
+      <button onclick="exportToPDF()">Download Rankings as PDF</button>
+      <button onclick="exportToExcel()">Download Rankings as Excel</button>
+      <div id="schoolTable"></div>
+    </section>
+
+    <section id="top3-sec" class="content-sec hidden">
+      <h1>Top 3 Projects by Category</h1>
+      <button onclick="downloadAsPDF()">Download Top Three as PDF</button>
+      <button onclick="downloadAsExcel()">Download Top Three as Excel</button>
+      <div id="top3Table"></div>
+    </section>
+    <section id="top4-sec" class="content-sec hidden">
+      <h1>Top 4 Projects by Category</h1>
+      <button onclick="downloadTop4AsPDF()">Download Top FOUR as PDF</button>
+      <button onclick="downloadTop4AsExcel()">
+        Download Top FOUR as Excel
+      </button>
+      <div id="top4Table"></div>
+    </section>
+    <section id="printouts" class="content-sec hidden">
+      <h1>PRINTOUTS</h1>
+      <hr />
+      <div class="print-head">
+        <a href="#" onclick="displayschools('preview')">Schools registered</a>
+        <a href="#" onclick="displayProjectsByCategory('preview')"
+          >Projects registered</a
+        >
+        <a href="#" onclick="displayResultsByCategories('preview')"
+          >Results per categories</a
+        >
+        <a href="#" onclick="displayOverallResults('preview')"
+          >Schools OVERALL</a
+        >
+        <a href="#" onclick="displayTopThreeProjects('preview')">Top three</a>
+      </div>
+      <button onclick="downloadPDF()">Download as PDF</button>
+      <button onclick="downloadExcel()">Download as Excel</button>
+      <div id="printoutTable"></div>
+    </section>
+    <script src="analysis.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.basic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <footer>
+      <p>&copy; 2024 Your BEN CODE. All rights reserved.</p>
+      <p>
+        <small>
+          This website and its content are protected by copyright law.
+          Unauthorized reproduction, distribution, or modification of any
+          material is strictly prohibited.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

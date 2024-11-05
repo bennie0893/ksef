@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Fair</title>
+</head>
+<body>
+    <div class="header">MURANG'A COUNTY KIGUMO SUBCOUNTY</div>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">BEN CODE</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="">ABOUT</a></li>
+            <li><a href="">CONTACT</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Sidebar (hidden for now) -->
+    <nav class="sidebar" style="display: none;">
+        <ul>
+            <li><a href="school.html">SCHOOLS</a></li><hr>
+            <li><a href="registration.html">REGISTRATION</a></li><hr>
+            <li><a href="marks.html">MARKS</a></li><hr>
+            <li>
+                <a
+                  href="analysis.html"
+                  class="active"
+                  onclick="showSection('ranking-sec')"
+                  >ANALYSIS</a
+                >
+                <div class="dropdown_menu">
+                  <ul>
+                    <li>
+                      <a
+                        href="analysis.html"
+                        onclick="showSection('ranking-sec')"
+                        >SCHOOL OVERALL</a
+                      >
+                    </li>
+                    <hr />
+                    <li>
+                      <a href="analysis.html" onclick="showSection('top3-sec')"
+                        >TOP THREE</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li></li><hr>
+            <li><a href="" class="active">PRINTOUTS</a></li><hr>
+        </ul>
+    </nav>
+    
+    <!-- Printouts section -->
+    <h1>PRINTOUTS</h1><hr>
+    <div class="print-head">
+        <a href="#" onclick="displayschools('preview')">Schools registered</a>
+        <a href="#" onclick="displayProjectsByCategory('preview')">Projects registered</a>
+        <a href="#" onclick="displayResultsByCategories('preview')">Results per categories</a>
+        <a href="#" onclick="displayOverallResults('preview')">Schools OVERALL</a>
+        <a href="#" onclick="displayTopThreeProjects('preview')">Top three</a>
+    </div>
+
+    <!-- Preview section where content will be displayed -->
+    <div id="preview"></div>
+
+    <!-- Load JavaScript files at the end -->
+    <script  src="printout.js"></script>
+    <script src="registration.js"></script>
+    <script src="analysis.js"></script>
+    <script src="categories.js"></script>
+    <script src="marks.js"></script>
+    <script src="registration.js"></script>
+    <script src="subcounty.js"></script>
+    <script src="index.js"></script>
+    <footer>
+      <p>&copy; 2024 Your BEN CODE. All rights reserved.</p>
+      <p>
+        <small>
+          This website and its content are protected by copyright law.
+          Unauthorized reproduction, distribution, or modification of any
+          material is strictly prohibited.
+        </small>
+      </p>
+    </footer>
+   
+</html>

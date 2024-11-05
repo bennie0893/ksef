@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Science Fair</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="header">MURANG'A COUNTY KIGUMO SUBCOUNTY</div>
+    <nav class="navbar">
+      <div class="logo">BEN CODE</div>
+      <ul>
+        <li>
+          <a href="index.html"><i class="fas fa-house"></i> HOME</a>
+        </li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <nav class="sidebar" id="sidebar">
+      <ul>
+        <hr />
+        <li><a href="school.html" class="active">🕌 SCHOOLS</a></li>
+        <hr />
+        <li><a href="registration.html">🗺 REGISTRATION</a></li>
+        <hr />
+        <li>
+          <a href="marks.html">MARKS ▶ <i class="fas fa-caret-right"></i></a>
+          <div class="dropdown_menu">
+            <ul>
+              <li><a href="subcounty.html"> SUB COUNTY</a></li>
+              <hr />
+              <li><a href="marks.html"> COUNTY</a></li>
+              <hr />
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li>
+          <a href="analysis.html" onclick="showSection('ranking-sec')">ANALYSIS<i class="fas fa-caret-right"></i></a>
+          <div class="dropdown_menu">
+            <ul>
+              <li>
+                <a href="analysis.html" onclick="showSection('ranking-sec')"
+                  >SCHOOL OVERALL</a
+                >
+              </li>
+              <hr />
+              <li>
+                <a href="analysis.html" onclick="showSection('top3-sec')"
+                  >TOP THREE</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li><a href="printouts.html">PRINTOUTS</a></li>
+        <hr />
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>School Data Entry App</h1>
+      <hr />
+
+      <div class="form-section">
+        <h2>Enter School Data</h2>
+        <form id="addSchoolForm">
+          <div class="flex-container">
+            <div>
+              <label for="school-name">School Name</label>
+              <input type="text" id="school-name" required />
+            </div>
+            <div>
+              <label for="sub-county">Sub County</label>
+              <select id="sub-county" required>
+                <option value="KIGUMO">KIGUMO</option>
+                <option value="KIHARU">KIHARU</option>
+                <option value="GATANGA">GATANGA</option>
+                <option value="MATHIOYA">MATHIOYA</option>
+              </select>
+            </div>
+            <button type="submit" onclick="">
+              <span></span><i class="fas fa-save"></i>🛹 Add School
+            </button>
+          </div>
+        </form>
+      </div>
+      <hr />
+
+      <div class="upload-section">
+        <h2>Upload Excel File</h2>
+        <a
+          href="template.xlsx"
+          download="template.xlsx"
+          class="download-template"
+          ><span></span> <i class="fas fa-download"></i>🚊 Download Template</a
+        >
+        <input type="file" id="excel-file" accept=".xlsx, .xls" />
+        <button id="upload-btn">
+          <span></span> <i class="fas fa-upload"></i>🏍 Upload and Save
+        </button>
+      </div>
+
+      <div class="download-section">
+        <h2>Download Data</h2>
+        <button id="download-excel">
+          <span></span> <i class="fas fa-download"></i>🎌 Download to Excel
+        </button>
+        <button id="download-pdf">
+          <span></span> <i class="fas fa-download"></i>🎯 Download to PDF
+        </button>
+      </div>
+      <div class="table-section">
+        <select id="sheetSelect">
+          <option value="SCHOOLS">SCHOOLS</option>
+          <!-- Add more options as needed -->
+        </select>
+        <button id="loadSheet">
+          <span></span> <i class="fas fa-sync-alt"></i> Load Sheet
+        </button>
+        <hr />
+        <div class="container">
+          <div id="errorMessage"></div>
+          <table id="resultTable">
+            <thead id="tableHeader">
+              <!-- Headers will be dynamically populated here -->
+            </thead>
+            <tbody>
+              <!-- Rows will be dynamically populated here -->
+            </tbody>
+          </table>
+
+          <div class="table-controls">
+            <button id="saveChanges">
+              <span></span> <i class="fas fa-save"></i> Save Changes
+            </button>
+            <button id="addRow"><span></span>Add Row</button>
+            <div id="errorMessage"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="popup">
+      <img src="404-tick.png" />
+      <h2>Thank You!</h2>
+      <p>School added successfully</p>
+      <button type="button" onclick="closePopup()">OK</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/7.2.2/pouchdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb-find/7.2.2/pouchdb.find.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="school.js"></script>
+    <footer>
+      <hr></Hr><p>&copy; 2024 Your BEN CODE. All rights reserved.</p>
+      <p>
+        <small>
+          This website and its content are protected by copyright law.
+          Unauthorized reproduction, distribution, or modification of any
+          material is strictly prohibited.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

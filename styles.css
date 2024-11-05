@@ -1,0 +1,398 @@
+:root {
+  --primary-color: rgb(1, 1, 100);
+  --secondary-color: rgb(8, 8, 176);
+  --hover-color: rgb(29, 28, 28);
+  --text-color: aliceblue;
+  --active-color: rgb(39, 121, 6);
+  --background-image: url(back.jpg);
+}
+
+body,
+html {
+  font-family: Arial, sans-serif;
+  background-color: #dadbde;
+  margin: 0;
+  padding: 0;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 150px;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  background-color: var(--primary-color);
+  color: white;
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 10px;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar a:hover,
+.sidebar a:focus {
+  background-color: var(--secondary-color);
+}
+.dropdown_menu {
+  display: none; /* Initially hidden */
+  position: absolute;
+  left: 10px; /* Align with the sidebar width */
+  top: 30;
+  background-color: #031944; /* Same as sidebar */
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.dropdown_menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown_menu ul li {
+  margin-bottom: 10px;
+}
+
+.dropdown_menu ul li a {
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  display: block;
+  border-radius: 4px;
+}
+
+.dropdown_menu ul li a:hover,
+.dropdown_menu ul li a:focus {
+  background-color: #2b3e5c; /* Same hover color */
+}
+
+.fas {
+  float: right;
+  margin-left: 10px;
+  padding-top: 3px;
+}
+
+.sidebar ul li:hover .dropdown_menu {
+  display: block; /* Show on hover */
+}
+
+.navbar a.active,
+.sidebar a.active {
+  background-color: rgba(223, 224, 224, 0.63);
+  text-decoration: underline;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+  color: #e0e0e0;
+  font-size: 20px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  overflow: hidden;
+  position: fixed;
+  top: 40px;
+  z-index: 1000;
+}
+
+.navbar ul {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.navbar ul li {
+  float: left;
+}
+
+.navbar li:hover {
+  background-color: var(--secondary-color);
+}
+
+.navbar .logo {
+  background: linear-gradient(to right, rgb(4, 93, 202), rgb(239, 239, 241));
+  background-clip: text;
+  color: transparent;
+  float: left;
+  padding: 14px 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo::before {
+  content: "🚀";
+}
+
+.cred {
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: aqua;
+}
+
+@media (max-width: 500px) {
+  .navbar ul,
+  .sidebar {
+    width: 20%;
+    text-align: center;
+  }
+  .navbar a {
+    font-size: 1em;
+    padding: 10px;
+  }
+}
+
+/* POP UP */
+.popup {
+  width: 200px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 75%;
+  transform: translate(50%, 50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+/* Closing the .popup class with the correct syntax */
+.popup img {
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+
+.popup button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Correctly positioned .open-popup class */
+.open-popup {
+  visibility: visible;
+  top: 0;
+  transform: translate(10%, 50%) scale(1);
+}
+
+/* school registration */
+.container {
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #cecdcd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.form-section,
+.upload-section,
+.table-section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.flex-container {
+  border: #8d2ba1;
+  border-style: solid;
+  border-radius: 5px;
+  margin: 10px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  align-content: baseline;
+  gap: 10px;
+}
+
+.flex-container input[type="text"] {
+  width: 170%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.flex-container select,
+label {
+  margin-left: 80px;
+}
+button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+button span {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #fff;
+  transition: 0.5s;
+}
+button:hover span {
+  width: 100%;
+}
+button:hover {
+  background-color: #218838;
+  color: #000;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.table-section th {
+  background-color: #7f3dcf;
+}
+
+.actions button {
+  background-color: #007bff;
+  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.actions button.delete {
+  background-color: #dc3545;
+  width: 40px;
+  height: 40px;
+}
+
+.actions button:hover {
+  opacity: 0.8;
+}
+
+.download-template {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+}
+.download-template span {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+.download-template:hover span {
+  width: 100%;
+}
+.download-template:hover {
+  background-color: #0056b3;
+  color: #000;
+}
+#sign-in-btn,
+#sign-out-btn {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#sign-out-btn {
+  display: none;
+}
+
+#sign-in-btn:hover,
+#sign-out-btn:hover {
+  background-color: #357ae8;
+}

@@ -1,0 +1,747 @@
+:root {
+  --primary-color: rgb(1, 1, 100);
+  --secondary-color: rgb(8, 8, 176);
+  --hover-color: rgb(29, 28, 28);
+  --text-color: aliceblue;
+  --active-color: rgb(39, 121, 6);
+  --background-image: url(back.jpg);
+}
+body,
+html {
+  font-family: Arial, sans-serif;
+  background-color: #dadbde;
+  margin-top: 35px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+#toggleButton {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 2; /* Ensures the button is on top */
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.sidebar {
+  width: 150px;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  background-color: #3c5077; /* Primary color */
+  color: white;
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 10px;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+/* When the sidebar is hidden */
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus,
+.sidebar ul li .dropdown-toggle:hover,
+.sidebar ul li .dropdown-toggle:focus {
+  background-color: #2b3e5c; /* Secondary color */
+}
+
+.dropdown_menu {
+  display: none; /* Initially hidden */
+  position: absolute;
+  left: 10px; /* Align with the sidebar width */
+  top: 30;
+  background-color: #031944; /* Same as sidebar */
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.dropdown_menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown_menu ul li {
+  margin-bottom: 10px;
+}
+
+.dropdown_menu ul li a {
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  display: block;
+  border-radius: 4px;
+}
+
+.dropdown_menu ul li a:hover,
+.dropdown_menu ul li a:focus {
+  background-color: var(--primary-color); /* Same hover color */
+}
+
+.fas {
+  float: right;
+  margin-left: 10px;
+  padding-top: 3px;
+}
+
+.sidebar ul li:hover .dropdown_menu {
+  display: block; /* Show on hover */
+}
+
+.navbar a.active,
+.sidebar a.active {
+  background-color: rgba(223, 224, 224, 0.63);
+  text-decoration: underline;
+}
+
+.header {
+  width: 100%;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 10px;
+  color: #e0e0e0;
+  font-size: 20px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  overflow: hidden;
+  position: fixed;
+  top: 40px;
+  z-index: 1000;
+}
+
+.navbar ul {
+  float: right;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+.navbar ul li {
+  float: left;
+}
+
+.navbar li:hover {
+  background-color: var(--secondary-color);
+}
+
+.navbar .logo {
+  background: linear-gradient(to right, rgb(4, 93, 202), rgb(239, 239, 241));
+  background-clip: text;
+  color: transparent;
+  float: left;
+  padding: 14px 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo::before {
+  content: "🚀";
+}
+
+.cred {
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: aqua;
+}
+
+@media (max-width: 500px) {
+  .navbar ul,
+  .sidebar {
+    width: 10%;
+    text-align: center;
+  }
+  .navbar a {
+    font-size: 1em;
+    padding: 10px;
+  }
+}
+
+#level {
+  font-size: 2em;
+  background-color: rgb(38, 50, 142);
+  display: inline-block;
+  color: aliceblue;
+  border-radius: 15px;
+  text-align: left;
+  padding: 10px;
+}
+
+.inline-form {
+  width: 100%;
+  display: block;
+  align-items: center;
+  gap: 10px; /* Adjust the spacing between items */
+}
+
+.inline-form label {
+  margin-right: 10px; /* Add spacing between label and input/select */
+  font-weight: bold;
+}
+
+.inline-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 30%; /* Adjust width as needed */
+}
+.inline-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 20%; /* Adjust width as needed */
+}
+
+.inline-form button {
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+}
+
+.inline-form button:hover {
+  background-color: #45a049;
+}
+
+#schoolList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#upload {
+  border-style: solid;
+  border-color: slateblue;
+  background-color: rgb(210, 220, 220);
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+#upload button {
+  display: inline-flex;
+}
+
+#upload button:hover {
+  color: aliceblue;
+  background-color: rgb(101, 155, 202);
+}
+
+.form-header {
+  margin-top: 100px;
+  font-size: 24px;
+  text-align: center;
+}
+#cadidate_reg {
+  border-style: solid;
+  border-color: slateblue;
+  background-color: rgb(183, 225, 225);
+  padding: 10px;
+  padding-right: 20px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+#form-container {
+  display: none; /* Initially hidden */
+  position: absolute; /* Position it absolutely relative to the parent */
+  top: 100%; /* Adjust the positioning as needed */
+  left: 200px; /* Adjust the positioning as needed */
+  width: 35%; /* Ensure the form container takes up full width */
+  background-color: white; /* Optional: Set a background color */
+  padding: 20px; /* Optional: Add some padding */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for depth */
+  z-index: 1; /* Ensure it appears on top of other elements */
+  transition: transform 0.4s, top 0.4s;
+  transform: translate(-30%, -99%) scale(0.9);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Container Styling */
+.form-container2 {
+  display: block;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  background-color: #d9d7d7;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: 0;
+  float: right; /* Aligns the table to the right */
+}
+
+/* Entry Row Styling */
+
+.entry-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #9312f6;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.entry-row input[type="text"],
+.entry-row input[type="number"] {
+  flex: 1;
+  margin-right: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.entry-row input[type="number"]:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.tags {
+  flex: 0 0 100%;
+  font-weight: bold;
+  color: #9312f6;
+  margin-bottom: 10px;
+  text-align: center; /* Center the text horizontally */
+}
+.entry-row-b {
+  width: 330px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid #0bc637;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 10px;
+  gap: 5px;
+}
+.entry-row-b input {
+  justify-content: center;
+  align-content: center;
+  border-radius: 5px;
+}
+.entry-row-b button {
+  position: relative;
+  z-index: 1;
+}
+.entry-row-b button span {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: #fff;
+  transition: 0.5s;
+}
+.entry-row-b button:hover span {
+  width: 100%;
+}
+.entry-row-b button:hover {
+  width: 100%;
+  color: #000;
+}
+
+/* Container for the tab buttons */
+.tab {
+  background-color: #f1f1f1; /* Background color of the tab container */
+  border: 1px solid #370ca2; /* Border around the tab container */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Style for the tab buttons */
+.tab .tablinks {
+  gap: 2px;
+  background-color: #848282; /* Background color of inactive tabs */
+  border: none; /* Remove border */
+  color: white; /* Text color of inactive tabs */
+  padding: 7px 7px; /* Padding inside the tabs */
+  cursor: pointer; /* Pointer cursor on hover */
+  float: left; /* Align tabs horizontally */
+  font-size: 12px; /* Font size */
+  transition: background-color 0.3s; /* Smooth background color change */
+}
+
+/* Hover effect for the tab buttons */
+.tab .tablinks:hover {
+  background-color: #bbb; /* Background color on hover */
+}
+
+/* Style for the active tab */
+.tab .tablinks.active {
+  background-color: #2196f3; /* Background color of the active tab */
+  color: white; /* Text color of the active tab */
+  font-weight: bold; /* Bold text for the active tab */
+}
+
+/* Clear floats after the tab links container */
+.tab::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* General Table Styles */
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Header Styles */
+th {
+  background-color: #4caf50;
+  color: white;
+  padding: 4px;
+  border: 1px solid #ddd; /* Light border for header cells */
+  font-size: 8px;
+  font-weight: bold;
+}
+
+/* Cell Styles */
+td {
+  padding: 8px;
+  border: 1px solid #ddd; /* Thin borders around cells */
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Light Gray Background for Even Rows */
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff; /* White Background for Odd Rows */
+}
+
+/* Excel-like table styling */
+.project-table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: 120px;
+  margin-right: 10px;
+}
+
+.project-table th,
+.project-table td {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+.project-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.project-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.project-table tr:hover {
+  background-color: #ddd;
+}
+
+.excel-table tr:hover {
+  background-color: #ddd;
+}
+
+/* POP UP */
+.popup {
+  width: 300px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 100%;
+  left: 30%;
+  transform: translate(50%, 50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+/* Closing the .popup class with the correct syntax */
+.popup img {
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+
+.popup button {
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Correctly positioned .open-popup class */
+.open-popup {
+  visibility: visible;
+  top: 60%;
+  transform: translate(10%, 90%) scale(1);
+}
+
+.ranking-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px; /* Optional: Adjust padding as needed */
+}
+
+.ranking-sec h1 {
+  margin-bottom: 0; /* Optional: Adjust margin as needed */
+}
+
+/* Table Container */
+#schoolTable {
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+  text-align: right; /* Aligns the table to the right */
+  margin-top: 0;
+  margin-left: 0px; /* Pushes the table to the right */
+}
+
+.top3-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  margin-left: 70px;
+}
+
+.top3-sec h1 {
+  margin-bottom: 20px;
+}
+
+#top3Table {
+  width: 100%;
+}
+#projectList {
+  margin: 5px;
+  padding: 0; /* Remove padding to make columns smaller */
+  width: 100%; /* Adjust the width to make the table more compact */
+  border-collapse: collapse; /* Optional: Collapse borders for a more compact table */
+}
+
+#projectList th,
+#projectList td {
+  padding: 2px; /* Set smaller padding for table cells */
+  text-align: left; /* Optional: Align text to the left */
+}
+
+#projectList th {
+  font-weight: bold; /* Optional: Keep header text bold */
+}
+
+#projectList td {
+  font-size: 12px; /* Optional: Decrease font size for smaller columns */
+}
+
+.hidden {
+  display: none;
+}
+
+.content-sec {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Category Header Styles */
+.category-header {
+  color: rgb(33, 15, 196); /* White Text */
+  font-weight: bold;
+  text-align: center;
+}
+
+/* printouts*/
+/* Style for the print-head container */
+.print-head {
+  display: flex;
+  justify-content: space-around; /* Distributes the links evenly */
+  background-color: transparent; /* Light background */
+  padding: 10px 0; /* Space around the links */
+  border-bottom: 2px solid #ddd; /* Border to define the section */
+}
+
+/* Style for the individual links */
+.print-head a {
+  text-decoration: none; /* Remove default underline */
+  color: #333; /* Dark text color */
+  font-weight: bold; /* Make the text bold */
+  padding: 10px 15px; /* Add space around the text */
+  border-radius: 5px; /* Round the corners */
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+/* Hover effect for the links */
+.print-head a:hover {
+  background-color: #333; /* Change background on hover */
+  color: #fff; /* Change text color on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .print-head {
+    flex-direction: column; /* Stack links vertically on smaller screens */
+    align-items: center;
+  }
+
+  .print-head a {
+    margin: 5px 0; /* Space between stacked links */
+    width: 80%; /* Make links wider */
+    text-align: center;
+  }
+}
+.edit-btn,
+.delete-btn {
+  padding: 4px 4px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+  display: inline;
+  align-items: center;
+  gap: 0; /* Space between icon and text */
+  transition: background-color 0.3s;
+}
+
+.icon-edit::before,
+.icon-delete::before {
+  font-size: 15px;
+  margin-right: 2px;
+}
+
+/* Edit button styles */
+.edit-btn {
+  background-color: #4cafa0; /* Green */
+}
+.edit-btn:hover {
+  background-color: #45a049;
+}
+.icon-edit::before {
+  content: "✏️"; /* Unicode for pencil icon */
+}
+
+/* Delete button styles */
+.delete-btn {
+  background-color: #7f36f4; /* Red */
+}
+.delete-btn:hover {
+  background-color: #d32f2f;
+}
+.icon-delete::before {
+  content: "🗑️"; /* Unicode for trash icon */
+}

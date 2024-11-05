@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/7.2.2/pouchdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb-find/7.2.2/pouchdb.find.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- SheetJS for Excel generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- jsPDF-AutoTable plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Science Fair</title>
+  </head>
+  <body>
+    <div class="header">MURANG'A COUNTY KIGUMO SUBCOUNTY</div>
+    <nav class="navbar">
+      <button id="toggleButton" onclick="toggleSidebar()">☰</button>
+      <div class="logo">BEN CODE</div>
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
+    <nav id="sidebar" class="sidebar" style="display: none">
+      <ul>
+        <hr />
+        <li><a href="school.html">SCHOOLS</a></li>
+        <hr />
+        <li><a href="registration.html">REGISTRATION</a></li>
+        <hr />
+        <li>
+          <a href="" class="active">MARKS <i class="fas fa-caret-right"></i></a>
+          <div class="dropdown_menu">
+            <ul>
+              <li><a href="subcounty.html"> SUB COUNTY</a></li>
+              <hr />
+              <li><a href="marks.html"> COUNTY</a></li>
+              <hr />
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li>
+          <a
+            href="analysis.html"
+            class="active"
+            onclick="showSection('ranking-sec')"
+            >ANALYSIS</a
+          >
+          <div class="dropdown_menu">
+            <ul>
+              <li>
+                <a href="analysis.html" onclick="showSection('ranking-sec')"
+                  >SCHOOL OVERALL</a
+                >
+              </li>
+              <hr />
+              <li>
+                <a href="analysis.html" onclick="showSection('top3-sec')"
+                  >TOP THREE</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li><a href="printouts.html">PRINTOUTS</a></li>
+        <hr />
+      </ul>
+    </nav>
+
+    <div id="projectList"></div>
+
+    <div class="form-container2">
+      <form id="entriesForm">
+        <!-- Selected Project -->
+        <fieldset>
+          <legend class="tags">selected project</legend>
+          <div class="entry-row">
+            <input
+              type="text"
+              id="firstCandidate"
+              name="firstCandidate"
+              placeholder="First Candidate"
+            />
+            <input
+              type="text"
+              id="secondCandidate"
+              name="secondCandidate"
+              placeholder="Second Candidate"
+            />
+            <input
+              type="text"
+              id="schoolName"
+              name="schoolName"
+              placeholder="School Name"
+            />
+            <input
+              type="text"
+              id="projectTitle"
+              name="projectTitle"
+              placeholder="Project Title"
+            />
+            <select id="category" name="category">
+              <option value="AGRICULTURE">AGRICULTURE</option>
+              <option value="BEHAVIOR SCIENCE">BEHAVIOR SCIENCE</option>
+              <option value="BIO & BIOTECH">BIO & BIOTECH</option>
+              <option value="CHEMISTRY">CHEMISTRY</option>
+              <option value="COMPUTER">COMPUTER</option>
+              <option value="ENERGY & TRANSPORT">ENERGY & TRANSPORT</option>
+              <option value="ENGINEERING">ENGINEERING</option>
+              <option value="ENVIRONMENTAL">ENVIRONMENTAL</option>
+              <option value="FOOD TECHNOLOGY">FOOD TECHNOLOGY</option>
+              <option value="MATHEMATICS">MATHEMATICS</option>
+              <option value="PHYSICS">PHYSICS</option>
+              <option value="TECH & APPLIED TECH">TECH & APPLIED TECH</option>
+              <option value="ROBOTICS">ROBOTICS</option>
+            </select>
+          </div>
+
+          <!-- Entries Section A -->
+          <div class="entry-row-b">
+            <div class="tags">SECTION A</div>
+            <input
+              type="number"
+              id="a"
+              name="a"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="b"
+              name="b"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="c"
+              name="c"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="av1"
+              name="av1"
+              min="0.0"
+              max="30.0"
+              disabled
+            />
+          </div>
+
+          <!-- Entries Section B -->
+          <div class="entry-row-b">
+            <div class="tags">SECTION B</div>
+            <input
+              type="number"
+              id="a2"
+              name="a2"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="b2"
+              name="b2"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="c2"
+              name="c2"
+              min="0.0"
+              max="30.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="av2"
+              name="av2"
+              min="0.0"
+              max="30.0"
+              disabled
+            />
+          </div>
+
+          <!-- Entries Section C -->
+          <div class="entry-row-b">
+            <div class="tags">SECTION C</div>
+            <input
+              type="number"
+              id="a3"
+              name="a3"
+              min="0.0"
+              max="40.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="b3"
+              name="b3"
+              min="0.0"
+              max="40.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="c3"
+              name="c3"
+              min="0.0"
+              max="40.0"
+              step="0.5"
+              value="0.0"
+              oninput="validateMax(this)"
+            />
+            <input
+              type="number"
+              id="av3"
+              name="av3"
+              min="0.0"
+              max="40.0"
+              disabled
+            />
+          </div>
+
+          <div class="entry-row-b">
+            <div class="tags">SAVE</div>
+            <button
+              type="button"
+              style="width: 40%"
+              class="submit-button"
+              id="saveRowData"
+            >
+              <span></span>Save
+            </button>
+
+            <div style="width: 40%">
+              <button
+                type="button"
+                id="downloadPdfBtn"
+                class="inline-form"
+                style="width: 100%; margin-bottom: 5px"
+              >
+                Download as PDF
+              </button>
+              <button
+                type="button"
+                id="downloadExcelBtn"
+                class="inline-form"
+                style="width: 100%"
+              >
+                Download as Excel
+              </button>
+            </div>
+          </div>
+          <progress
+            style="margin: 0; padding: 0"
+            value="10"
+            max="100"
+          ></progress>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab" id="tab">
+      <button class="tablinks active" onclick="openTab(event,'AGRICULTURE')">
+        AGRICULTURE
+      </button>
+
+      <button class="tablinks" onclick="openTab(event,'BEHAVIOR SCIENCE')">
+        BEHAVIOR SCIENCE
+      </button>
+      <button class="tablinks" onclick="openTab(event,'BIOTECH')">
+        BIOTECH
+      </button>
+      <button class="tablinks" onclick="openTab(event,'CHEMISTRY')">
+        CHEMISTRY
+      </button>
+      <button class="tablinks" onclick="openTab(event,'COMPUTER')">
+        COMPUTER
+      </button>
+      <button class="tablinks" onclick="openTab(event,'ENERGY AND TRANSPORT')">
+        ENERGY AND TRANSPORT
+      </button>
+      <button class="tablinks" onclick="openTab(event,'ENGINEERING')">
+        ENGINEERING
+      </button>
+      <button class="tablinks" onclick="openTab(event,'ENVIRONMENTAL')">
+        ENVIRONMENTAL
+      </button>
+      <button class="tablinks" onclick="openTab(event,'FOOD TECHNOLOGY')">
+        FOOD TECHNOLOGY
+      </button>
+      <button class="tablinks" onclick="openTab(event,'MATHEMATICS')">
+        MATHEMATICS
+      </button>
+      <button class="tablinks" onclick="openTab(event,'PHYSICS')">
+        PHYSICS
+      </button>
+      <button class="tablinks" onclick="openTab(event,'APPLIED TECH')">
+        APPLIED TECH
+      </button>
+      <button class="tablinks" onclick="openTab(event,'ROBOTICS')">
+        ROBOTICS
+      </button>
+    </div>
+
+    <table id="projectsTable" class="excel-table">
+      <thead>
+        <tr>
+          <th style="width: 2%">ID</th>
+          <th style="width: 5%">First Candidate</th>
+          <th style="width: 5%">Second Candidate</th>
+          <th style="width: 5%">School Name</th>
+          <th style="width: 5%">Project Title</th>
+          <th style="width: 2%">A</th>
+          <th style="width: 2%">B</th>
+          <th style="width: 2%">C</th>
+          <th style="width: 2%">Av1</th>
+          <th style="width: 2%">A2</th>
+          <th style="width: 2%">B2</th>
+          <th style="width: 2%">C2</th>
+          <th style="width: 2%">Av2</th>
+          <th style="width: 2%">A3</th>
+          <th style="width: 2%">B3</th>
+          <th style="width: 2%">C3</th>
+          <th style="width: 2%">Av3</th>
+          <th style="width: 3%">TOTAL</th>
+          <th style="width: 2%">MARK</th>
+          <th style="width: 3%">RANK</th>
+          <th style="width: 3%">POINTS</th>
+          <th style="width: 8%; background-color: blueviolet">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be inserted here -->
+      </tbody>
+    </table>
+
+    <script src="marks.js"></script>
+    <footer>
+      <p>&copy; 2024 Your BEN CODE. All rights reserved.</p>
+      <p>
+        <small>
+          This website and its content are protected by copyright law.
+          Unauthorized reproduction, distribution, or modification of any
+          material is strictly prohibited.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Science Fair</title>
+  </head>
+  <body>
+    <div class="header">MURANG'A COUNTY KIGUMO SUBCOUNTY</div>
+    <nav class="navbar">
+      <button id="toggleButton" onclick="">☰</button>
+      <div class="logo">BEN CODE</div>
+
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="">ABOUT</a></li>
+        <li><a href="">CONTACT</a></li>
+      </ul>
+    </nav>
+    <nav id="sidebar" class="sidebar">
+      <ul>
+        <hr />
+        <li><a href="school.html">SCHOOLS</a></li>
+        <hr />
+        <li><a href="" class="active">REGISTRATION</a></li>
+        <hr />
+        <li>
+          <a href="marks.html">MARKS <i class="fas fa-caret-right"></i></a>
+          <div class="dropdown_menu">
+            <ul>
+              <li><a href="subcounty.html"> SUB COUNTY</a></li>
+              <hr />
+              <li><a href="marks.html"> COUNTY</a></li>
+              <hr />
+            </ul>
+          </div>
+        </li>
+        <hr />
+        <li></li>
+        <li>
+          <a
+            href="analysis.html"
+            class="active"
+            onclick="showSection('ranking-sec')"
+            >ANALYSIS</a
+          >
+          <div class="dropdown_menu">
+            <ul>
+              <li>
+                <a href="analysis.html" onclick="showSection('ranking-sec')"
+                  >SCHOOL OVERALL</a
+                >
+              </li>
+              <hr />
+              <li>
+                <a href="analysis.html" onclick="showSection('top3-sec')"
+                  >TOP THREE</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <hr />
+
+        <li><a href="printouts.html">PRINTOUTS</a></li>
+        <hr />
+      </ul>
+    </nav>
+    <h1 class="form-header">REGISTRATION</h1>
+    <hr />
+
+    <div class="upload-container">
+      <button id="showFormButton">Show Form</button>
+      <button id="hideFormButton">Close Form</button>
+      <input type="file" id="excelFileInput" accept=".xlsx, .xls" />
+      <button id="uploadButton">Upload Excel</button>
+      <button id="downloadTemplateButton">Download Excel Template</button>
+    </div>
+
+    <div class="form-container" id="form-container">
+      <form id="registrationForm">
+        <div class="form-group" id="cadidate_reg">
+          <label for="firstCandidate">FIRST CANDIDATE</label>
+          <input
+            type="text"
+            id="firstCandidate"
+            name="firstCandidate"
+            required
+          />
+          <label for="secondCandidate">SECOND CANDIDATE</label>
+          <input type="text" id="secondCandidate" name="secondCandidate" />
+        </div>
+        <hr />
+
+        <div class="form-group" id="cadidate_reg">
+          <label for="schoolName">SCHOOL NAME</label>
+          <select id="school-list">
+            <option value="">-- Select a School --</option>
+          </select>
+          <label for="projectTitle">PROJECT TITLE</label>
+          <input type="text" id="projectTitle" name="projectTitle" required />
+        </div>
+
+        <div class="form-group" id="cadidate_reg">
+          <label for="category">CATEGORY</label>
+          <select id="category" name="category">
+            <option value="AGRICULTURE">AGRICULTURE</option>
+            <option value="BEHAVIOR SCIENCE">BEHAVIOR SCIENCE</option>
+            <option value="BIOTECH">BIO & BIOTECH</option>
+            <option value="CHEMISTRY">CHEMISTRY</option>
+            <option value="COMPUTER">COMPUTER</option>
+            <option value="ENERGY AND TRANSPORT">ENERGY & TRANSPORT</option>
+            <option value="ENGINEERING">ENGINEERING</option>
+            <option value="ENVIRONMENTAL">ENVIRONMENTAL</option>
+            <option value="FOOD TECHNOLOGY">FOOD TECHNOLOGY</option>
+            <option value="MATHEMATICS">MATHEMATICS</option>
+            <option value="PHYSICS">PHYSICS</option>
+            <option value="APPLIED TECH">TECH & APPLIED TECH</option>
+            <option value="ROBOTICS">ROBOTICS</option>
+          </select>
+          <button type="submit" class="submit-button" onclick="">SAVE</button>
+        </div>
+      </form>
+      <button type="button" onclick="hideForm()" id="canceButton">
+        Cancel
+      </button>
+    </div>
+
+    <select id="categoryFilter"></select>
+    <input type="hidden" id="editProjectId" value="" />
+    <div class="registratiob-table-section">
+      <div class="container">
+        <table id="projectTable">
+          <thead>
+            <tr id="tableHeader"></tr>
+            <!-- Dynamic header will be populated here -->
+          </thead>
+          <tbody id="projectList"></tbody>
+          <!-- Dynamic rows will be populated here -->
+        </table>
+      </div>
+    </div>
+
+    <div class="popup" id="popup">
+      <img src="404-tick.png" />
+      <h2>Thank You!</h2>
+      <p>Details successfully submitted</p>
+      <button type="button" onclick="closePopup()">OK</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/7.2.2/pouchdb.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb-find/7.2.2/pouchdb.find.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <script src="registration.js"></script>
+    <footer>
+      <p>&copy; 2024 Your BEN CODE. All rights reserved.</p>
+      <p>
+        <small>
+          This website and its content are protected by copyright law.
+          Unauthorized reproduction, distribution, or modification of any
+          material is strictly prohibited.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>
