@@ -9,7 +9,7 @@ let sheetName = "";
 
 // Auto-load sheet data on page load
 window.addEventListener("DOMContentLoaded", function () {
-  loadCategories();
+   loadCategories();
   fetchSheetData(); // Loads the default sheet if available
   fetchSchools(); // Populate the school list on load
 });
