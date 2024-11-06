@@ -149,7 +149,7 @@ async function deleteRow(sheetName, rowIndex) {
   try {
     console.log("Deleting row from sheet:", sheetName, "Row index:", rowIndex); // Log the values
 
-    const response = await fetch("http://localhost:3000/delete", {
+    const response = await fetch("https://ksef-10.onrender.com/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sheetName, rowIndex }), // Include sheetName and rowIndex in the request body
@@ -167,7 +167,7 @@ async function deleteRow(sheetName, rowIndex) {
 
 // Save changes to the Google Sheet
 function saveChanges(sheetRange, updatedData) {
-  fetch("http://localhost:3000/update", {
+  fetch("https://ksef-10.onrender.com/update", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ sheet: sheetRange, data: updatedData }),
@@ -292,7 +292,7 @@ document
     };
 
     try {
-      const response = await fetch("http://localhost:3000/add-project", {
+      const response = await fetch("https://ksef-10.onrender.com/add-project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(projectData),
@@ -324,7 +324,7 @@ document.getElementById("uploadButton").addEventListener("click", function () {
   const formData = new FormData();
   formData.append("file", file);
 
-  fetch("http://localhost:3000/upload-excel", {
+  fetch("https://ksef-10.onrender.com/upload-excel", {
     method: "POST",
     body: formData,
   })
@@ -346,5 +346,5 @@ document.getElementById("uploadButton").addEventListener("click", function () {
 document
   .getElementById("downloadTemplateButton")
   .addEventListener("click", function () {
-    window.location.href = "http://localhost:3000/download-template"; // URL to download the template from the backend
+    window.location.href = "https://ksef-10.onrender.com/download-template"; // URL to download the template from the backend
   });
