@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3000;
 const spreadsheetId = process.env.SPREADSHEET_ID;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://bennie0893.github.io',  // Your frontend URL
+}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
