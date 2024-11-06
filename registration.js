@@ -125,8 +125,72 @@ function saveChanges(sheetRange, updatedData) {
     })
     .catch((error) => console.error("Error updating sheet:", error));
 }
+// Load categories into the filter dropdown
+function loadCategories() {
+  const categories = [
+    "AGRICULTURE",
+    "BEHAVIOR SCIENCE",
+    "BIOTECH",
+    "CHEMISTRY",
+    "COMPUTER",
+    "ENERGY AND TRANSPORT",
+    "ENGINEERING",
+    "ENVIRONMENTAL",
+    "FOOD TECHNOLOGY",
+    "MATHEMATICS",
+    "PHYSICS",
+    "APPLIED TECH",
+    "ROBOTICS",
+  ];
 
+  const categorySelect = document.getElementById("categoryFilter");
+  categorySelect.innerHTML = '<option value="">-- Select Category --</option>';
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    categorySelect.appendChild(option);
+  });
+}
 // Fetch schools using Google Sheets API remains unchanged
+async function fetchSchools() {
+  try {
+    const SHEET_ID = "1iR7x1U6uJhyLhkueQ0vpg6eHSMAfEnWPMCgWTWQBDHM";
+    const API_KEY = "AIzaSyAxja5zlmfH7rSHSLTmo88cjRV0MKetEJM"; // Replace with your Google Sheets API key
+    const RANGE = "SCHOOLS!A:B"; // Adjust range as needed
+
+    const FULL_URL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+
+    const response = await fetch(FULL_URL);
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error.message);
+    }
+
+    const rows = data.values;
+    const schoolList = document.getElementById("school-list");
+
+    // Clear existing options
+    schoolList.innerHTML = '<option value="">-- Select a School --</option>';
+
+    // Populate dropdown with schools
+    rows.forEach((row, index) => {
+      if (index > 0) {
+        // Skip the header row
+        const schoolName = row[1]; // Adjust based on your column
+        if (schoolName) {
+          const option = document.createElement("option");
+          option.value = schoolName;
+          option.text = schoolName;
+          schoolList.appendChild(option);
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching schools:", error);
+  }
+}
 
 // Handle form submission to add a project
 document.getElementById("registrationForm").addEventListener("submit", async function (event) {
