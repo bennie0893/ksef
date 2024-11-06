@@ -9,7 +9,7 @@ let sheetName = "";
 
 // Auto-load sheet data on page load
 window.addEventListener("DOMContentLoaded", function () {
-
+  loadCategories()
   fetchSheetData(); // Loads the default sheet if available
   fetchSchools(); // Populate the school list on load
 });
@@ -125,7 +125,33 @@ function saveChanges(sheetRange, updatedData) {
     })
     .catch((error) => console.error("Error updating sheet:", error));
 }
+// Load categories into the filter dropdown
+function loadCategories() {
+  const categories = [
+    "AGRICULTURE",
+    "BEHAVIOR SCIENCE",
+    "BIOTECH",
+    "CHEMISTRY",
+    "COMPUTER",
+    "ENERGY AND TRANSPORT",
+    "ENGINEERING",
+    "ENVIRONMENTAL",
+    "FOOD TECHNOLOGY",
+    "MATHEMATICS",
+    "PHYSICS",
+    "APPLIED TECH",
+    "ROBOTICS",
+  ];
 
+  const categorySelect = document.getElementById("categoryFilter");
+  categorySelect.innerHTML = '<option value="">-- Select Category --</option>';
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    categorySelect.appendChild(option);
+  });
+}
 // Fetch schools using Google Sheets API remains unchanged
 
 // Handle form submission to add a project
