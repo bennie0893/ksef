@@ -2,7 +2,7 @@
   "name": "ksef",
   "version": "1.0.0",
   "description": "Trial application for KSEF using Electron",
-  "main": "SERVERS.JS",
+  "main": "server.js",
   "author": "ben",
   "license": "MIT",
   "keywords": ["electron", "ksef", "trial", "desktop-app"],
@@ -11,11 +11,11 @@
     "url": "https://github.com/yourusername/ksef.git"
   },
   "scripts": {
-    "start": "node SERVERS.JS",
+    "start": "node server.js",
     "make": "electron-forge make",
     "package": "electron-forge package",
     "publish": "electron-forge publish",
-    "server": "node SERVERS.JS"
+    "server": "node server.js"
   },
   "config": {
     "forge": {
@@ -38,7 +38,7 @@
         ]
       },
       "extraFiles": [
-        "SERVERS.JS",       
+        "server.js",       
         "index.html",
         "node_modules/"
       ]
