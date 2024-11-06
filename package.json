@@ -61,7 +61,8 @@
 "dependencies": {
   "express": "^4.21.1",
   "googleapis": "^144.0.0",
-   "cors": "^2.8.5"
+   "cors": "^2.8.5",
+  "dotenv": "^16.0.0"
 }
 
 }
