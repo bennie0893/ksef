@@ -11,7 +11,7 @@
     "url": "https://github.com/yourusername/ksef.git"
   },
   "scripts": {
-    "start": "electron-forge start",
+    "start": "node SERVERS.JS",
     "make": "electron-forge make",
     "package": "electron-forge package",
     "publish": "electron-forge publish",
@@ -25,9 +25,8 @@
           "config": {
             "name": "ksef",
             "authors": "ben",
-            "description": "trial",
-            "noMsi": true,
-            "setupExe": "ksefSetup.exe"
+            "description": "trial"
+ 
           }
         }
       ],
