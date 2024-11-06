@@ -58,7 +58,9 @@
     "electron": "^33.0.2",
     "electron-winstaller": "^5.4.0"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
-  }
+"dependencies": {
+  "express": "^4.21.1",
+  "googleapis": "^144.0.0"
+}
+
 }
