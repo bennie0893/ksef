@@ -9,16 +9,10 @@ const PORT = process.env.PORT || 3000;
 const spreadsheetId = process.env.SPREADSHEET_ID;
 
 // Middleware
-const corsOptions = {
-  origin: ['https://bennie0893.github.io', 'http://localhost:3000'],
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(express.static("public"));
-
+app.use(express.json());
+app.use(cors());
 // Google Sheets API setup
 const auth = new google.auth.GoogleAuth({
   keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
