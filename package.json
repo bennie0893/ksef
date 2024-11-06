@@ -38,8 +38,7 @@
         ]
       },
       "extraFiles": [
-        "SERVERS.JS",
-        "main.js",
+        "SERVERS.JS",       
         "index.html",
         "node_modules/"
       ]
