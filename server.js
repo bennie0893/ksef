@@ -12,7 +12,9 @@ const spreadsheetId = process.env.SPREADSHEET_ID;
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://bennie0893.github.io',  // Your frontend URL
+}));
 // Google Sheets API setup
 const auth = new google.auth.GoogleAuth({
   keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
