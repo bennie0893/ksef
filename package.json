@@ -2,7 +2,7 @@
   "name": "ksef",
   "version": "1.0.0",
   "description": "Trial application for KSEF using Electron",
-  "main": "main.js",
+  "main": "SERVERS.JS",
   "author": "ben",
   "license": "MIT",
   "keywords": ["electron", "ksef", "trial", "desktop-app"],
